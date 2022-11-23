@@ -6,8 +6,11 @@ var logger = require('morgan');
 var database = require ("./config/database");
 
 var auth = require("./auth/main_auth");
+var cors = require("cors");
+
 var empleadosRouter = require ('./routes/empleados.router');
 var nftsRouter = require ('./routes/nfts.router');
+var usuariosRouter = require ('./routes/usuarios.router');
 
 var app = express();
 
@@ -16,11 +19,15 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(cors());
 
 //mongoconnection
 database.mongoConnect();
-app.use(auth);
+
 //router
+
+app.use('/usuarios',usuariosRouter );
+app.use(auth);
 app.use('/empleados', empleadosRouter);
 app.use('/nfts', nftsRouter);
 

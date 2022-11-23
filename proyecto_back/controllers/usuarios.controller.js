@@ -1,4 +1,4 @@
-const Usuario = require ("../models/usuarios.model");
+const Usuario = require ("../models/usuarios.model")
 const crypto = require("crypto")
 const jwt = require("jsonwebtoken")
 
@@ -14,7 +14,9 @@ exports.login = function(req, res, next){
             response.token = jwt.sign({
                 id: usuario._id,
                 usuario: usuario.usuario
-            }, "_recret_")
+            }, "_recret_",
+            {expiresIn: '12hr'}
+            )
         }
         res.json(response);
     })
