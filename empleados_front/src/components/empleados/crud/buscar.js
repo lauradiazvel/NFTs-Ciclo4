@@ -35,10 +35,11 @@ export default class EmpleadosBuscar extends React.Component {
   constructor(props) {
     super(props);
     this.state = {};
-  }
-  componentDidMount() {
+
     
   }
+  componentDidMount() {} 
+ 
   render() {
    
     return (
@@ -47,7 +48,7 @@ export default class EmpleadosBuscar extends React.Component {
           <h1 > Buscar Empleados</h1>
         </Row>
         <Row>
-          <DataGrid url="/empleados" columns={columns}/>
+          <DataGrid url="/empleados" columns={columns} showEditButton={true}  />
         </Row>
       </Container>
     );

@@ -4,14 +4,22 @@ import "./empleados.css";
 import EmpleadosBuscar from "./crud/buscar";
 import EmpleadosCrear from "./crud/crear";
 
+
 export default class Empleados extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-        currentTab:"buscar"
+        currentTab:"buscar",
     };
+    this.changeTab = this.changeTab.bind(this);
+     
   }
-  render() {
+  changeTab(tab) {
+    this.setState({
+      currentTab: tab});
+  }
+  
+    render() {
     return (
       <Container id="empleados-container">
         <Row>
@@ -26,7 +34,10 @@ export default class Empleados extends React.Component {
           </Nav>
         </Row>
         <Row>
-            {this.state.currentTab === "buscar" ?( <EmpleadosBuscar/>):(<EmpleadosCrear/>) }
+            {this.state.currentTab === "buscar" ?( 
+            <EmpleadosBuscar/>
+            ) : (    
+            <EmpleadosCrear changeTab={this.changeTab}/>)}
         </Row>
       </Container>
     );
